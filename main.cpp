@@ -10,6 +10,7 @@ using namespace std;
 
 int main()
 {
+
     //generazione tabella
     ofstream tabAnagrafica("Nomi.sql");
     tabAnagrafica << "CREATE TABLE UTENTI (" <<endl;
@@ -46,7 +47,13 @@ int main()
 
 
     //generazione dati
-    int numRecord = 1000; //numero dei record
+    int numRecord = 0; //numero dei record da creare
+    do
+    {
+        cout << "Inserisci numero dei record da creare " ;
+        cin >> numRecord;
+    } while (numRecord <= 0);
+
     int nome = 0;
     int cognome = 0;
     int pref = 0;
@@ -55,6 +62,7 @@ int main()
     int nciv = 0;
     int redditoint = 0; //parte intera del reddito
     int redditodec = 0; //centesimi
+    float perc = 0.0;
     for (int i = 0; i <= numRecord;i++)
     {
         nome = rand()%20;
@@ -67,6 +75,8 @@ int main()
         redditodec = rand()%99;
         tabAnagrafica << "(" << i << ",'" << nomiutenti[nome] << "','" << cognomi[cognome] << "','" << prefissi[pref] << indirizzi[indirizzo];
         tabAnagrafica << " " << nciv <<"','" << citta[c] << "'," << redditoint << "." << redditodec << ")";
+        ;
+        cout << "record creati : " << i << " di " << numRecord << endl;
         if(i < numRecord)
             tabAnagrafica <<"," << endl;
         else
